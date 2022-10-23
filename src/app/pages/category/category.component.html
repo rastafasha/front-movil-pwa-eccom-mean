@@ -1,0 +1,73 @@
+<section class="page favorites category">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage ">
+        <h3>Category: {{productos[0].categoria.nombre}}</h3>
+    </div>
+    <div class="container-fluid cuadro-modal animated fadeInUp">
+        <div class="lineamedio"></div>
+        <div>
+            <!----info-->
+            <div class="areablanc areablanc-interna animated fadeInUp">
+                <div class="div-responsive1">
+
+                    <div class="post-inner">
+
+                        <div class="carousel-inner-data">
+                            <div class="post navTabs" *ngFor="let prod of productos">
+                                <div class=" itemFav">
+                                    <div class="group  itemFav lastposthome">
+                                        <div class="favoritesdiv1">
+                                            <a [routerLink]="['/app/product', prod._id]">
+                                                <img [src]="prod.img | imagenPipe: 'productos'" alt="">
+                                            </a>
+                                        </div>
+
+                                        <div class="favoritesdiv2">
+                                            <p>{{prod.titulo}}</p>
+                                            <p>fecha de ultima compra</p>
+                                            <div class="precio">
+                                                <p>$ {{prod.precio_antes}}</p>
+                                                <p>$ {{prod.precio_ahora}}</p>
+                                            </div>
+
+                                            <!-- <div class="stars">
+                                                <ul>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                </ul>
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="botonera">
+                            <div class="button btn-simple-gray">Anterior</div>
+                            <div class="button btn-full-red">Siguiente</div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="div-responsive2">
+
+                    <!-- <app-lateral></app-lateral> -->
+                </div>
+
+
+            </div>
+
+            <!---info-->
+        </div>
+
+    </div>
+</section>

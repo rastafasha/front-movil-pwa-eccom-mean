@@ -1,0 +1,14 @@
+.precio {
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px
+}
+
+.precio p {
+    float: left;
+    margin-right: 5px;
+}
+
+.precio p:nth-child(1) {
+    text-decoration: line-through;
+}
