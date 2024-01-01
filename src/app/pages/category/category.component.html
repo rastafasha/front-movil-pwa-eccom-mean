@@ -26,7 +26,7 @@
 
                                         <div class="favoritesdiv2">
                                             <p>{{prod.titulo}}</p>
-                                            <p>fecha de ultima compra</p>
+                                            <p *ngIf="prod.status"></p>
                                             <div class="precio">
                                                 <p>$ {{prod.precio_antes}}</p>
                                                 <p>$ {{prod.precio_ahora}}</p>

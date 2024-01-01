@@ -61,11 +61,11 @@ export class ProductoService {
   }
 
 
-  cat_by_name(name):Observable<any>{
-    const url = `${base_url}/productos/categoria/name/`+name;
+  cat_by_name(id):Observable<any>{
+    const url = `${base_url}/productos/productos_general/cat/`+id;
     return this.http.get<any>(url, this.headers)
     .pipe(
-      map((resp:{ok: boolean, producto: Producto}) => resp.producto)
+      map((resp:{ok: boolean, productos: Producto}) => resp.productos)
       );
   }
 /**

@@ -57,7 +57,13 @@ export class UsuarioService {
 
   guardarLocalStorage(token: string, menu: any){
     localStorage.setItem('token', token);
+    // localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
+  getLocalStorage(){
+    localStorage.getItem('token')
+        
   }
 
 
@@ -67,7 +73,7 @@ export class UsuarioService {
 
       gapi.load('auth2', () =>{
         this.auth2 = gapi.auth2.init({
-          client_id: environment.client_idGoogle,
+          client_id: 'environment.clientIdGoogle',
           cookiepolicy: 'single_host_origin',
         });
         resolve();
@@ -81,6 +87,7 @@ export class UsuarioService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('menu');
+    localStorage.removeItem('user');
     this.router.navigateByUrl('/login');
 
 
@@ -103,7 +110,7 @@ export class UsuarioService {
 
         this.usuario = new Usuario(first_name, last_name, pais, telefono, numdoc, email, '', img, google, role, uid);
 
-        this.guardarLocalStorage(resp.token, resp.menu);
+        this.guardarLocalStorage(resp.token,  resp.menu);
         return true;
       }),
       catchError(error => of(false))
@@ -114,7 +121,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/usuarios`, formData)
     .pipe(
       tap((resp: any) => {
-        this.guardarLocalStorage(resp.token, resp.menu);
+        this.guardarLocalStorage(resp.token,  resp.menu);
       })
     )
   }
@@ -134,7 +141,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login`, formData)
     .pipe(
       tap((resp: any) => {
-        this.guardarLocalStorage(resp.token, resp.menu);
+        this.guardarLocalStorage(resp.token,  resp.menu);
       })
     )
   }
@@ -143,7 +150,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login/google`, {token})
     .pipe(
       tap((resp: any) => {
-        this.guardarLocalStorage(resp.token, resp.menu);
+        this.guardarLocalStorage(resp.token,  resp.menu);
       })
     )
   }

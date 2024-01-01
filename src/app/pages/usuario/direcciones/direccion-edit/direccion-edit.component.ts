@@ -17,9 +17,17 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
 })
 export class DireccionEditComponent implements OnInit {
 
-  public direccion: Direccion;
-  public usuario;
+  // public direccion: Direccion;
   public direccionForm: FormGroup;
+  public usuario;
+  public direccion_id:any;
+  public nombres_completos:any;
+  public direccion:any;
+  public referencia:any;
+  public pais:any;
+  public ciudad:any;
+  public zip:any;
+  public direccion_selected:any;
   pageTitle:string;
   public url;
   public paises;
@@ -38,6 +46,21 @@ export class DireccionEditComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    // this.activatedRoute.params.subscribe((resp:any)=>{
+    //   console.log(resp);
+    //   this.direccion_id = resp.id;
+    //   this.nombres_completos = resp.nombres_completos,
+    //   this.direccion = resp.direccion,
+    //   this.referencia = resp.referencia,
+    //   this.pais = resp.pais,
+    //   this.ciudad = resp.ciudad,
+    //   this.zip = resp.zip,
+    //   // id = resp.id;
+    //   // this.getDirecction();
+    //   // this.getDireccion();
+    // });
+    this.validarFormulario();
     if(this.usuario){
       this.direccion_data = {};
       this.usuario;
@@ -58,8 +81,16 @@ export class DireccionEditComponent implements OnInit {
     this.activatedRoute.params.subscribe( ({id}) => this.getDireccion(id));
   }
 
+  getDirecction(){
+    this._direccionService.get_direccion(this.direccion_id).subscribe((resp:any)=>{
+      console.log(resp);
+      this.direccion_selected = resp;
+      
+    })
+  }
 
-  getDireccion(id:string){
+
+  getDireccion(id:any){
 
 
     if(!id !== null && id !== undefined){
@@ -67,7 +98,7 @@ export class DireccionEditComponent implements OnInit {
       this._direccionService.get_direccion(id).subscribe(
         res => {
           this.direccionForm.patchValue({
-            id: res._id,
+            id: this.direccion_id,
             nombres_completos: res.nombres_completos,
             direccion: res.direccion,
             referencia: res.referencia,
@@ -84,7 +115,7 @@ export class DireccionEditComponent implements OnInit {
   }else{
     this.pageTitle = 'Creating ';
   }
-  this.validarFormulario();
+  // this.validarFormulario();
 
   }
 

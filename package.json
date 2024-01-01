@@ -4,7 +4,8 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "start:prod": "ng build && lite-server --baseDir dist/ecomerce-app-movil",
+        "start:dev": "ng serve --port 4201",
+        "start:prod": "ng build && lite-server -p 8080 --baseDir dist/ecomerce-app-movil",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test"
@@ -20,11 +21,12 @@
         "@angular/platform-browser-dynamic": "^14.2.0",
         "@angular/router": "^14.2.0",
         "@angular/service-worker": "^14.2.0",
+        "ngx-connection-service": "^7.0.3",
         "ngx-pagination": "^6.0.2",
         "ngx-paypal": "^10.1.0",
-        "ngx-socket-io": "^4.3.1",
+        "ngx-socket-io": "^3.0.1",
+        "pouchdb-browser": "^7.3.0",
         "rxjs": "~7.5.0",
-        "socket.io-client": "^4.5.3",
         "sweetalert2": "^11.6.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.11.4"

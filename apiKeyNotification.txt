@@ -1,0 +1,4 @@
+VapiKey Notifications
+
+"publicKey":"BOD_CraUESbh9BhUEccgqin8vbZSKHAziTtpqvUFl8B8LO9zrMnfbectiViqWIsTLglTqEx3c0XsmqQQ5A-KALg",
+"privateKey":"34CA-EpxLdIf8fmJBj2zoDg5OIQIvveBcu7zWkTkPnw"

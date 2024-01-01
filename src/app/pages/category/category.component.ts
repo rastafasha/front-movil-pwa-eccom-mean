@@ -23,6 +23,10 @@ export class CategoryComponent implements OnInit {
   public categoriaSeleccionado: Categoria;
 
   public cupones;
+  public categorias;
+  public categoriaId;
+  public categoriaName;
+
 
 
 
@@ -40,39 +44,26 @@ export class CategoryComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    // this.activatedRoute.params.subscribe( ({id}) => this.cargarCategory(id));
     window.scrollTo(0, 0);
+    this.getCategories();
     this.activatedRoute.params.subscribe( ({id}) => this.getProductByCategory(id));
   }
 
-  /**
-   * @method: Método que obtiene categoria
-   * @author: malcolmc
-   * @since 21/06/2022
-   * @param _id {_id}: objeto a obtener
-   */
-
-  // cargarCategory(id: string){debugger
-
-  //   if(id === 'nuevo'){
-  //     return;
-  //   }
-
-  //   this.categoryService.getCategoriaById(id).subscribe( respCatId =>{
-  //     if(!respCatId){
-  //       return this.router.navigateByUrl(`/app/`);
-  //     }
-  //     console.log(respCatId);
-
-  //     const { _id, icono, nombre, state_banner, subcategorias } = respCatId;
-  //     this.categoriaSeleccionado = respCatId;
-  //     console.log(this.categoriaSeleccionado);
-
-  //   });
-
-  //     this.activatedRoute.params.subscribe( ({respCatId}) => this.getProductByCategory(respCatId));
-  // }
-
+  getCategories(){
+    this.categoryService.getCategories().subscribe((resp:any)=>{
+      this.categorias = resp;
+      this.categoriaId = resp.id;
+      console.log(this.categorias);
+      console.log(this.categoriaId);
+      this.getCgetNameCategoryategories();
+    })
+  }
+  getCgetNameCategoryategories(){
+    this.categoryService.getCategoriaById(this.categoriaId).subscribe((resp:any)=>{
+      this.categoriaName = resp;
+      console.log(this.categoriaName);
+    })
+  }
 
 
 
@@ -84,19 +75,15 @@ export class CategoryComponent implements OnInit {
    */
 
 
-  getProductByCategory(id: string){debugger
+  getProductByCategory(id: string){
 
 
     if(id){
-      // idCategoria = this.categoria._id;
-      this.productService.listar_productoCat(id).subscribe( res =>{
-
+      this.productService.cat_by_name(id).subscribe( (res:any) =>{
+        
+        // console.log(res);
         this.productos = res;
-        console.log(id);
-        console.log(res);
         console.log(this.productos);
-        console.log(this.productos[0].categoria._id);
-        console.log(this.productos[0].categoria.nombre);
 
         });
 

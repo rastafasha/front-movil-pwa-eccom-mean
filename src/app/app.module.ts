@@ -12,6 +12,10 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { ComponentsModule } from './components/components.module';
 import { PipesModule } from './pipes/pipes.module';
 
+import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
+
+const config: SocketIoConfig = {url: environment.soketServer, options:{}};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +28,7 @@ import { PipesModule } from './pipes/pipes.module';
     AuthModule,
     ComponentsModule,
     PipesModule,
+    SocketIoModule.forRoot(config),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
